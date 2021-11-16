@@ -13,6 +13,7 @@ public class UnicodeSortingHelper
 
     /**
      * Set the sorting rules (collator) according to given locale
+     *
      * @param locale locale to be used to retrieve sorting rules (collator instance)
      */
     public void setCollator(Locale locale)
@@ -22,6 +23,7 @@ public class UnicodeSortingHelper
 
     /**
      * Compare two strings
+     *
      * @param a first string to be compared
      * @param b second string to be compared
      * @return 0 if strings are equal, 1 if String {@code a} is larger or -1 if String {@code b} is larger
@@ -33,9 +35,10 @@ public class UnicodeSortingHelper
 
     /**
      * Swap two strings elements in the array
+     *
      * @param arr string array container
-     * @param x first element's array index
-     * @param y second element's array index
+     * @param x   first element's array index
+     * @param y   second element's array index
      */
     public void swap(String[] arr, int x, int y)
     {
