@@ -21,7 +21,8 @@ public interface SortInterface
         if (makeCopy)
         {
             result = arr.clone();
-        } else
+        }
+        else
         {
             result = arr;
         }
