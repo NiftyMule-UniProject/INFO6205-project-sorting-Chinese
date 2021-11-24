@@ -11,6 +11,11 @@ public class UnicodeSortingHelper
 {
     private Collator collator = Collator.getInstance(Locale.CHINA);
 
+    public UnicodeSortingHelper()
+    {
+        collator.setStrength(Collator.PRIMARY);
+    }
+
     /**
      * Set the sorting rules (collator) according to given locale
      *
@@ -31,6 +36,11 @@ public class UnicodeSortingHelper
     public int compare(String a, String b)
     {
         return collator.compare(a, b);
+    }
+
+    public byte[] getRadix(String a)
+    {
+        return collator.getCollationKey(a).toByteArray();
     }
 
     /**
