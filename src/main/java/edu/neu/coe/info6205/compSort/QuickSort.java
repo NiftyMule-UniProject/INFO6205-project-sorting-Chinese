@@ -1,8 +1,6 @@
 package edu.neu.coe.info6205.compSort;
 
 import edu.neu.coe.info6205.SortInterface;
-import java.util.List;
-import edu.neu.coe.info6205.SortInterface;
 import edu.neu.coe.info6205.UnicodeSortingHelper;
 
 public class QuickSort implements SortInterface {
@@ -51,41 +49,4 @@ public class QuickSort implements SortInterface {
             sort(a, j + 1, hi);
         }
     }
-
-
-
-//    public int partition(String [] a, int lo, int hi)
-//    {
-//
-//        int pivot = lo;
-//
-//        while (lo < hi){
-//            while (lo < hi && helper.compare(a[hi] , pivot) < 0) hi--;
-//           // a.set(lo, a.get(hi));
-//            a[lo] = a[hi];
-//
-//            while (lo < hi && helper.compare(a[lo] , pivot) > 0) lo++;
-//            //a.set(hi, a.get(lo));
-//            a[hi] = a[lo];
-//        }
-//
-//       // a.set(lo, pivot);
-//        a[lo] = a[pivot];
-//
-//        return lo;
-//    }
-
-
-    /*private void swap(List<T> list, int i, int j) {
-        T t = list.get(i);
-        list.set(i, list.get(j));
-        list.set(j, t);
-    }*/
-
-    /*private  boolean less(T a, T b) {
-        if(a.compareTo(b) < 0) {
-            return true;
-        }
-        return false;
-    }*/
 }
