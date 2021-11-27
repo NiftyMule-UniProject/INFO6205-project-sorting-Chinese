@@ -1,63 +1,91 @@
 package edu.neu.coe.info6205.compSort;
 
-import java.util.*;
+import edu.neu.coe.info6205.SortInterface;
+import java.util.List;
+import edu.neu.coe.info6205.SortInterface;
+import edu.neu.coe.info6205.UnicodeSortingHelper;
 
-public class QuickSort<T extends Comparable> {
-    /*
-     * This method accepts a list of elements of generic type T which are comparable
-     * */
-    public void sort(List<T> a)
+public class QuickSort implements SortInterface {
+
+    private final UnicodeSortingHelper helper;
+    public QuickSort()
     {
-        sort(a, 0, a.size() - 1);
+        this.helper = new UnicodeSortingHelper();
     }
 
-    private  void sort(List<T> list, int lo, int hi)
+    public QuickSort(UnicodeSortingHelper helper)
     {
-        if (hi <= lo) return;
-        int pivot = partition(list, lo, hi);
-        //TODO
-        sort(list, lo, pivot - 1);
-        sort(list, pivot + 1, hi);
+        this.helper = helper;
     }
 
-
-    /*
-     *
-     * Implement the partition method that determines the pivot element.
-     * For T a and T b,
-     * a.compareTo(b) == 0 -> a == b;
-     * a.compareTo(b) < 0 -> a < b;
-     * a.compareTo(b) > 0 -> a > b
-     * */
-    public int partition(List<T> list, int lo, int hi)
+    @Override
+    public String [] sort(String [] a )
     {
-        //TODO
-        T pivot = list.get(lo);
+        sort(a, 0, a.length - 1);
+        return a;
+    }
 
-        while (lo < hi){
-            while (lo < hi && !less(list.get(hi), pivot)) hi--;
-            list.set(lo, list.get(hi));
+    public  void sort(String [] a, int lo, int hi)
+    {
 
-            while (lo < hi && less(list.get(lo), pivot)) lo++;
-            list.set(hi, list.get(lo));
+        int i = lo;
+        int j = hi;
+
+
+        if (j - i >= 1)
+        {
+            String pivot = a[i];
+            while (j > i)
+            {
+                while (helper.compare(a[i],pivot) <= 0 && i < hi && j > i){
+                    i++;
+                }
+                while (helper.compare(a[j],pivot) >= 0 && j > lo && j >= i){
+                    j--;
+                }
+                if (j > i)
+                    helper.swap(a, i, j);
+            }
+            helper.swap(a, lo, j);
+            sort(a, lo, j - 1);
+            sort(a, j + 1, hi);
         }
-
-        list.set(lo, pivot);
-
-        return lo;
     }
 
 
-    private void swap(List<T> list, int i, int j) {
+
+//    public int partition(String [] a, int lo, int hi)
+//    {
+//
+//        int pivot = lo;
+//
+//        while (lo < hi){
+//            while (lo < hi && helper.compare(a[hi] , pivot) < 0) hi--;
+//           // a.set(lo, a.get(hi));
+//            a[lo] = a[hi];
+//
+//            while (lo < hi && helper.compare(a[lo] , pivot) > 0) lo++;
+//            //a.set(hi, a.get(lo));
+//            a[hi] = a[lo];
+//        }
+//
+//       // a.set(lo, pivot);
+//        a[lo] = a[pivot];
+//
+//        return lo;
+//    }
+
+
+    /*private void swap(List<T> list, int i, int j) {
         T t = list.get(i);
         list.set(i, list.get(j));
         list.set(j, t);
-    }
+    }*/
 
-    private  boolean less(T a, T b) {
+    /*private  boolean less(T a, T b) {
         if(a.compareTo(b) < 0) {
             return true;
         }
         return false;
-    }
+    }*/
 }
