@@ -6,15 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class QuickSortTest {
-
+public class DualPivotSortTest {
 
     @Test
     public void basicSortTest()
     {
         String[] arr = {"abc", "add", "aaa"};
-        SortInterface quickSort = new QuickSort();
-        quickSort.mutatingSort(arr);
+        SortInterface dualpivotsort = new DualPivotSort();
+        dualpivotsort.mutatingSort(arr);
         assertArrayEquals(arr, new String[]{"aaa", "abc", "add"});
     }
 
@@ -22,8 +21,8 @@ public class QuickSortTest {
     public void basicPartialSortTest()
     {
         String[] arr = {"abc", "add", "aaa"};
-        SortInterface quickSort = new QuickSort();
-        quickSort.sort(arr, 0, 1);
+        SortInterface dualpivotsort = new DualPivotSort();
+        dualpivotsort.sort(arr, 0, 1);
         assertArrayEquals(arr, new String[]{"abc", "add", "aaa"});
     }
 
@@ -31,8 +30,8 @@ public class QuickSortTest {
     public void basicPartialSortTest2()
     {
         String[] arr = {"abc", "add", "aaa"};
-        SortInterface quickSort = new QuickSort();
-        quickSort.sort(arr, 1, 2);
+        SortInterface dualpivotsort = new DualPivotSort();
+        dualpivotsort.sort(arr, 1, 2);
         assertArrayEquals(arr, new String[]{"abc", "aaa", "add"});
     }
 
