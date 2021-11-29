@@ -1,3 +1,4 @@
+
 package edu.neu.coe.info6205.compSort;
 
 import edu.neu.coe.info6205.SortInterface;
@@ -29,7 +30,6 @@ public class TimSort implements SortInterface {
     {
         assert n >= 0;
 
-        // Becomes 1 if any 1 bits are shifted off
         int r = 0;
         while (n >= MIN_MERGE)
         {
@@ -41,7 +41,7 @@ public class TimSort implements SortInterface {
 
     void insertionSort(String[] arr, int from, int to)
     {
-        for (int i = from + 1; i <= to; ++i)
+        for (int i = from + 1; i <= to; i++)
         {
             int j = i;
             while (j > from && helper.compare(arr[j - 1], arr[j]) > 0)
@@ -55,8 +55,6 @@ public class TimSort implements SortInterface {
     // Merge function merges the sorted runs
     void merge(String[] arr, int l, int m, int r)
     {
-        // Original array is broken in two parts
-        // left and right array
         int len1 = m - l + 1, len2 = r - m;
         String[] left = new String[len1];
         String[] right = new String[len2];
@@ -73,8 +71,6 @@ public class TimSort implements SortInterface {
         int j = 0;
         int k = l;
 
-        // After comparing, we merge those two array
-        // in larger sub array
         while (i < len1 && j < len2)
         {
             if (helper.compare(left[i], right[j]) < 0)
@@ -89,8 +85,6 @@ public class TimSort implements SortInterface {
             k++;
         }
 
-        // Copy remaining elements
-        // of left, if any
         while (i < len1)
         {
             arr[k] = left[i];
@@ -98,8 +92,6 @@ public class TimSort implements SortInterface {
             i++;
         }
 
-        // Copy remaining element
-        // of right, if any
         while (j < len2)
         {
             arr[k] = right[j];
@@ -110,35 +102,31 @@ public class TimSort implements SortInterface {
 
     //TimSort implementation
     @Override
-    public void sort(String[] arr, int from, int to)
+    public void sort(String[] arr, int from ,  int to)
     {
-        int n = to+1;
+        int n = to + 1; 
         int minRun = minRunLength(MIN_MERGE);
 
-        for (int i = 0; i < n; i += minRun)
+        for (int i = from; i < to + 1; i += minRun)
         {
-            insertionSort(arr, i,
-                    Math.min((i + MIN_MERGE - 1), (n - 1)));
+            insertionSort(arr, i, Math.min((i + MIN_MERGE - 1), (to)));
         }
 
 
         for (int size = minRun; size < n; size = 2 * size)
         {
 
-            for (int left = 0; left < n;
-                 left += 2 * size)
+            for (int left = 0; left < n; left += 2 * size)
             {
 
                 int mid = left + size - 1;
-                int right = Math.min((left + 2 * size - 1),
-                        (n - 1));
-
-                if(mid < right)
+                int right = Math.min((left + 2 * size - 1),(n- 1));
                     merge(arr, left, mid, right);
             }
         }
     }
 
 }
+
 
 
