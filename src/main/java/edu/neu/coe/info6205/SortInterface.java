@@ -59,4 +59,6 @@ public interface SortInterface
      * @param to   the ending index of sub-array
      */
     void sort(String[] arr, int from, int to);
+
+    //void sort(String [] arr , int n);
 }
