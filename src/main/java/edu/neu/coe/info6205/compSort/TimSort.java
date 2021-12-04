@@ -1,32 +1,39 @@
-
 package edu.neu.coe.info6205.compSort;
 
 import edu.neu.coe.info6205.SortInterface;
 import edu.neu.coe.info6205.UnicodeSortingHelper;
 
-public class TimSort implements SortInterface {
+public class TimSort implements SortInterface
+{
 
+    private final int MIN_MERGE;
     private final UnicodeSortingHelper helper;
+
     public TimSort()
     {
+        this.MIN_MERGE = 32;
         this.helper = new UnicodeSortingHelper();
     }
 
     public TimSort(UnicodeSortingHelper helper)
     {
+        this.MIN_MERGE = 32;
         this.helper = helper;
     }
 
-    @Override
-    public String [] sort(String [] a )
+    public TimSort(int minMerge)
     {
-        sort(a, 0, a.length - 1);
-        return a;
+        this.MIN_MERGE = minMerge;
+        this.helper = new UnicodeSortingHelper();
     }
 
-    static int MIN_MERGE = 32;
+    public TimSort(int minMerge, UnicodeSortingHelper helper)
+    {
+        this.MIN_MERGE = minMerge;
+        this.helper = helper;
+    }
 
-    public static int minRunLength(int n)
+    public int minRunLength(int n)
     {
         assert n >= 0;
 
@@ -55,17 +62,12 @@ public class TimSort implements SortInterface {
     // Merge function merges the sorted runs
     void merge(String[] arr, int l, int m, int r)
     {
+        if (m >= r) return;
         int len1 = m - l + 1, len2 = r - m;
         String[] left = new String[len1];
         String[] right = new String[len2];
-        for (int x = 0; x < len1; x++)
-        {
-            left[x] = arr[l + x];
-        }
-        for (int x = 0; x < len2; x++)
-        {
-            right[x] = arr[m + 1 + x];
-        }
+        System.arraycopy(arr, l, left, 0, len1);
+        System.arraycopy(arr, m + 1, right, 0, len2);
 
         int i = 0;
         int j = 0;
@@ -78,7 +80,8 @@ public class TimSort implements SortInterface {
                 arr[k] = left[i];
                 i++;
             }
-            else {
+            else
+            {
                 arr[k] = right[j];
                 j++;
             }
@@ -102,30 +105,26 @@ public class TimSort implements SortInterface {
 
     //TimSort implementation
     @Override
-    public void sort(String[] arr, int from ,  int to)
+    public void sort(String[] arr, int from, int to)
     {
-        int n = to + 1; 
+        int n = to - from + 1;
         int minRun = minRunLength(MIN_MERGE);
 
         for (int i = from; i < to + 1; i += minRun)
         {
-            insertionSort(arr, i, Math.min((i + MIN_MERGE - 1), (to)));
+            insertionSort(arr, i, Math.min(i + MIN_MERGE - 1, to));
         }
-
 
         for (int size = minRun; size < n; size = 2 * size)
         {
-
-            for (int left = 0; left < n; left += 2 * size)
+            for (int left = from; left < to + 1; left += 2 * size)
             {
-
                 int mid = left + size - 1;
-                int right = Math.min((left + 2 * size - 1),(n- 1));
-                    merge(arr, left, mid, right);
+                int right = Math.min((left + 2 * size - 1), to);
+                merge(arr, left, mid, right);
             }
         }
     }
-
 }
 
 

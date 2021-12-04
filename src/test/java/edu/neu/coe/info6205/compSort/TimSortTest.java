@@ -40,12 +40,12 @@ public class TimSortTest {
     public void sortChineseTest()
     {
         String[][] chineseStrings = TestUtils.getChineseStrings();
-        SortInterface quickSort = new QuickSort();
+        SortInterface timSort = new TimSort();
 
         for (String[] strArr : chineseStrings)
         {
             String[] sorted = TestUtils.getSortedArray(strArr);
-            quickSort.mutatingSort(strArr);
+            timSort.mutatingSort(strArr);
 
             assertArrayEquals(strArr, sorted);
         }
