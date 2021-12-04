@@ -3,9 +3,11 @@ package edu.neu.coe.info6205.compSort;
 import edu.neu.coe.info6205.SortInterface;
 import edu.neu.coe.info6205.UnicodeSortingHelper;
 
-public class QuickSort implements SortInterface {
+public class QuickSort implements SortInterface
+{
 
     private final UnicodeSortingHelper helper;
+
     public QuickSort()
     {
         this.helper = new UnicodeSortingHelper();
@@ -16,16 +18,8 @@ public class QuickSort implements SortInterface {
         this.helper = helper;
     }
 
-    @Override
-    public String [] sort(String [] a )
+    public void sort(String[] a, int lo, int hi)
     {
-        sort(a, 0, a.length - 1);
-        return a;
-    }
-
-    public  void sort(String [] a, int lo, int hi)
-    {
-
         int i = lo;
         int j = hi;
 
@@ -35,10 +29,12 @@ public class QuickSort implements SortInterface {
             String pivot = a[i];
             while (j > i)
             {
-                while (helper.compare(a[i],pivot) <= 0 && i < hi && j > i){
+                while (helper.compare(a[i], pivot) <= 0 && i < hi && j > i)
+                {
                     i++;
                 }
-                while (helper.compare(a[j],pivot) >= 0 && j > lo && j >= i){
+                while (helper.compare(a[j], pivot) >= 0 && j > lo && j >= i)
+                {
                     j--;
                 }
                 if (j > i)

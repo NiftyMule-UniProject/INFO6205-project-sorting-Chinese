@@ -9,7 +9,7 @@ import java.util.Locale;
  */
 public class UnicodeSortingHelper
 {
-    private Collator collator = Collator.getInstance(Locale.CHINA);
+    protected Collator collator = Collator.getInstance(Locale.CHINA);
 
     public UnicodeSortingHelper()
     {
