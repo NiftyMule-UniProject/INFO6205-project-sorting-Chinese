@@ -4,6 +4,7 @@
 - Modify the `BENCHMARK_RUNS` variable's value to change the number of runs
 - Experiment results are stored in [`experiment_result.xlsx`](https://github.com/NiftyMule/INFO6205-project-sorting-Chinese/blob/main/experiment_result.xlsx)
 
+### Sorted chinese names are stored in [resource folder](https://github.com/NiftyMule/INFO6205-project-sorting-Chinese/blob/main/src/main/resources/sortedChinese.txt)
 
 #### 6 different sorting methods are included in this repo
 - [LSD radix sort](/src/main/java/edu/neu/coe/info6205/indexSort/LSDRadixSort.java)
