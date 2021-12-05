@@ -1,10 +1,10 @@
 # INFO6205-project-sorting-Chinese
-#### To benchmark sorting algorithms, run the main function in [`SortingBenchmark.java`](https://github.com/NiftyMule/INFO6205-project-sorting-Chinese/blob/main/src/main/java/edu/neu/coe/info6205/SortingBenchmark.java)
-- Comment out the sorting algorithms [here](https://github.com/NiftyMule/INFO6205-project-sorting-Chinese/blob/main/src/main/java/edu/neu/coe/info6205/SortingBenchmark.java#L38) if you don't want to run it
+#### To benchmark sorting algorithms, run the main function in [`SortingBenchmark.java`](/main/src/main/java/edu/neu/coe/info6205/SortingBenchmark.java)
+- Comment out the sorting algorithms [here](/main/java/edu/neu/coe/info6205/SortingBenchmark.java#L38) if you don't want to run it
 - Modify the `BENCHMARK_RUNS` variable's value to change the number of runs
-- Experiment results are stored in [`experiment_result.xlsx`](https://github.com/NiftyMule/INFO6205-project-sorting-Chinese/blob/main/experiment_result.xlsx)
+- Experiment results are stored in [`experiment_result.xlsx`](/main/experiment_result.xlsx)
 
-### Sorted chinese names are stored in [resource folder](https://github.com/NiftyMule/INFO6205-project-sorting-Chinese/blob/main/src/main/resources/sortedChinese.txt)
+### Sorted chinese names are stored in [output folder](/src/main/resources/sortedChinese.txt)
 
 #### 6 different sorting methods are included in this repo
 - [LSD radix sort](/src/main/java/edu/neu/coe/info6205/indexSort/LSDRadixSort.java)
@@ -21,5 +21,5 @@
 
 ##### Benchmark class copied from [INFO6205 repo](https://github.com/NiftyMule/INFO6205/blob/Fall2021/src/main/java/edu/neu/coe/info6205/util/) for assignment 2
 
-##### Unit tests are located under [test folder](https://github.com/NiftyMule/INFO6205-project-sorting-Chinese/tree/main/src/test/java/edu/neu/coe/info6205)
+##### Unit tests are located under [test folder](/main/src/test/java/edu/neu/coe/info6205)
 
