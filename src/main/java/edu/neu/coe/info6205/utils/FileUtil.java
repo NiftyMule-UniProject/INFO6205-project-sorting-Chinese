@@ -1,9 +1,6 @@
 package edu.neu.coe.info6205.utils;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,5 +48,23 @@ public class FileUtil
 
         if (list.isEmpty()) return null;
         return list.toArray(String[]::new);
+    }
+
+    public static void writeToFiles(String filePath, String[] strArr)
+    {
+        String encoding = "UTF-8";
+        try
+        {
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), encoding));
+            for (String str : strArr)
+            {
+                writer.write(str);
+                writer.newLine();
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
