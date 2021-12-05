@@ -1,10 +1,10 @@
 package edu.neu.coe.info6205.compSort.huskySort.sort;
 
+import edu.neu.coe.info6205.basicSort.InsertionSort;
 import edu.neu.coe.info6205.compSort.huskySort.huskySortUtils.Coding;
 import edu.neu.coe.info6205.compSort.huskySort.huskySortUtils.HuskyCoder;
 import edu.neu.coe.info6205.compSort.huskySort.huskySortUtils.HuskyCoderFactory;
 import edu.neu.coe.info6205.compSort.huskySort.huskySortUtils.HuskySortHelper;
-import edu.neu.coe.info6205.compSort.huskySort.simple.InsertionSort;
 import edu.neu.coe.info6205.compSort.huskySort.utils.LazyLogger;
 
 import java.text.Collator;
@@ -58,7 +58,8 @@ public class PureHuskySort<X extends Comparable<X>>
         if (coding.perfect)
             return;
         if (useInsertionSort)
-            new InsertionSort<X>().mutatingSort(xs);
+            // hard-coded variable type - temporary use
+           this.insertionSort.mutatingSort((String[]) xs);
         else
             if (this.collator != null)
                 Arrays.sort(xs, collator::compare);
@@ -80,6 +81,7 @@ public class PureHuskySort<X extends Comparable<X>>
         this.mayBeSorted = mayBeSorted;
         this.useInsertionSort = useInsertionSort;
         this.collator = null;
+        this.insertionSort = new InsertionSort();
     }
 
     // a temporary new constructor to fix chinese sorting
@@ -89,6 +91,7 @@ public class PureHuskySort<X extends Comparable<X>>
         this.mayBeSorted = mayBeSorted;
         this.useInsertionSort = useInsertionSort;
         this.collator = collator;
+        this.insertionSort = new InsertionSort();
     }
 
     // CONSIDER invoke method in IntroSort
@@ -258,6 +261,7 @@ public class PureHuskySort<X extends Comparable<X>>
     private final boolean mayBeSorted;
     private final boolean useInsertionSort;
     private final Collator collator;
+    private final InsertionSort insertionSort;
 
     private final static LazyLogger logger = new LazyLogger(PureHuskySort.class);
 }

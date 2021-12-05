@@ -26,13 +26,13 @@ public class SortingBenchmark
     {
         Benchmark<String[]> bm = new Benchmark_Timer<>("Test " + sortName, String[]::clone, sort);
         double time = bm.run(strArr, runs);
-        logger.info(String.format("Array size: %-10d, %-25s, Runs: %2d, benchmark time: %.2f", arraySize, sortName, runs, time));
+        logger.info(String.format("Array size: %-10d, %-35s, Runs: %2d, benchmark time: %.2f", arraySize, sortName, runs, time));
     }
 
     public static void main(String[] args)
     {
         String[] strArr;
-        int[] Ns = {250000, 500000, 1000000, 2000000, 4000000};
+        int[] Ns = {1000, 500000, 1000000, 2000000, 4000000};
         Map<String, Consumer<String[]>> sorters = new HashMap<>();
 
         sorters.put("TimSort", new TimSort()::mutatingSort);
@@ -42,8 +42,10 @@ public class SortingBenchmark
         sorters.put("MSD radix sort - 8 bits", new MSDRadixSort()::mutatingSort);
         sorters.put("MSD radix sort - 16 bits", new MSDRadixSort16Bits()::mutatingSort);
         sorters.put("MSD radix sort - better cache", new MSDRadixSortCacheImproved()::mutatingSort);
-        sorters.put("Pure HuskySort",
+        sorters.put("Pure HuskySort - system sort",
                 new PureHuskySort<>(HuskyCoderFactory.chineseEncoder, false, false, Collator.getInstance(Locale.CHINA))::sort);
+        sorters.put("Pure HuskySort - InsertionSort",
+                new PureHuskySort<>(HuskyCoderFactory.chineseEncoder, false, true, Collator.getInstance(Locale.CHINA))::sort);
 
         for (int n : Ns)
         {
